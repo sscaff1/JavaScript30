@@ -43,8 +43,31 @@
   <ul id="bands"></ul>
 
 <script>
+// my approach without watching the video...Clearly need more practice with regex
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+const bandList = document.querySelector('#bands');
+const regexs = [/^the /, /^a /, /^an /];
 
+function removeExpressions(word, regex) {
+	return word.replace(regex, '');
+}
+
+const sortedBands = bands.sort((a, b) => {
+	let word1 = a;
+	let word2 = b;
+	regexs.forEach(regex => {
+		const regexVar = new RegExp(regex, 'gi');
+		if (a.match(regexVar)) {
+			word1 = removeExpressions(a, regexVar);
+		}
+		if (b.match(regexVar)) {
+			word2 = removeExpressions(b, regexVar);
+		}
+	});
+	return word1 < word2 ? -1 : 1;
+});
+
+bandList.innerHTML = sortedBands.map(band => `<li>${band}</li>`).join('');
 
 </script>
 

@@ -182,6 +182,22 @@
     </li>
 
 <script>
+	// my solution without watching the video
+	const items = document.querySelectorAll('li');
+	const timeArray = Array.from(items);
+
+	const totalTime = timeArray.reduce((obj, item) => {
+		const [minutes, seconds] = item.dataset.time.split(':').map(parseFloat);
+		obj.totalMinutes += minutes;
+		obj.totalSeconds += seconds;
+		return obj;
+	}, { totalHours: 0, totalMinutes: 0, totalSeconds: 0 });
+
+	totalTime.totalMinutes += Math.floor(totalTime.totalSeconds / 60);
+	totalTime.totalSeconds %= 60;
+	totalTime.totalHours += Math.floor(totalTime.totalMinutes / 60);
+	totalTime.totalMinutes %= 60;
+	console.log(totalTime);
 </script>
 </body>
 </html>

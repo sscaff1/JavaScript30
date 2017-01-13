@@ -54,7 +54,7 @@
 
     }
 
-    .plates input {
+    /*.plates input {
       display: none;
     }
 
@@ -65,7 +65,7 @@
 
     .plates input:checked + label:before {
       content: '🌮';
-    }
+    }*/
 
     .add-items {
       margin-top: 20px;
@@ -76,3 +76,11 @@
       outline:0;
       border:1px solid rgba(0,0,0,0.1);
     }
+
+	.actionList {
+		margin-top: 15px;
+	}
+
+	.action {
+		padding: 0 10px;
+	}

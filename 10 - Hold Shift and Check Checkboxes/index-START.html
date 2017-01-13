@@ -103,7 +103,46 @@
     </div>
   </div>
 
-<script>
-</script>
+	<script>
+		// my code to do this is below (not watching the video)
+		// let shouldSelectMultiple = false;
+		// let firstElementChecked = undefined;
+		// const inputs = document.querySelectorAll('input');
+		// inputs.forEach((input, i) => input.addEventListener('change', (e) => {
+		// 	if ((this.checked && !firstElementChecked) || !e.shiftKey) {
+		// 		firstElementChecked = i;
+		// 	}
+		// 	if (firstElementChecked !== undefined && e.shiftKey) {
+		// 		if (firstElementChecked > i) {
+		// 			for (let j = firstElementChecked; j > i; j--) {
+		// 				inputs[j].checked = true;
+		// 			}
+		// 		} else {
+		// 			for (let j = firstElementChecked; j < i; j++) {
+		// 				inputs[j].checked = true;
+		// 			}
+		// 		}
+		// 	}
+		// }));
+
+		// wes code
+		let lastChecked;
+		const checkboxes = document.querySelectorAll('input');
+		function handleCheck(e) {
+			let inBetween = false;
+			if (e.shiftKey && this.checked) {
+				checkboxes.forEach(checkbox => {
+					if (checkbox === this || checkbox === lastChecked) {
+						inBetween = !inBetween
+					}
+					if (inBetween) {
+						checkbox.checked = true;
+					}
+				});
+			}
+			lastChecked = this;
+		}
+		checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck))
+	</script>
 </body>
 </html>
